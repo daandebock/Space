@@ -27,9 +27,12 @@ function draw() {
     background(bg);
     drawGun();
     drawInvader();
+    fill("red");
     drawBullets();
     checkCollision();
     score();
+    checkbump();
+
 
 
 
@@ -92,4 +95,16 @@ function score() {
     fill("white");
     textAlign(CENTER);
     text('HIGHSCORE ' + teller, 200, 20);
+}
+function checkbump() {
+    invaders.forEach((element) => {
+        const distance = dist(element.x, element.y, gunX, gunY);
+        if (distance < 30) {
+            noLoop();
+            background("white");
+            textAlign(CENTER);
+            fill("black")
+            text("YOU LOST", 200, 200);
+        }
+    })
 }
