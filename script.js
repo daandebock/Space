@@ -16,8 +16,10 @@ let teller = 0;
 function preload() {
     img = loadImage('1000_F_458661624_4cAnWUWPKTWmLDlrbyHYI4jV7biS12ss.png');
     raket = loadImage('istockphoto-1249611748-1024x1024.png');
+    raket2 = loadImage('istockphoto-1249611748-1024x1024.png');
     blaster = loadSound('shot.mp3');
     explosion = loadSound('explosion.mp3');
+    raketkapot = loadImage('shipdown.png')
 }
 
 function setup() {
@@ -35,6 +37,7 @@ function draw() {
     checkCollision();
     score();
     checkbump();
+
 
 
 
@@ -78,11 +81,13 @@ function checkCollision() {
         const distance = dist(element.x, element.y, invaders[0].x, invaders[0].y);
 
         if (distance < 50) {
+
             bullets.shift();
             invaders.shift();
             spawnInvader();
             teller++;
             explosion.play();
+            drawBrokenRocket();
 
 
         }
@@ -104,7 +109,7 @@ function score() {
 function checkbump() {
     invaders.forEach((element) => {
         const distance = dist(element.x, element.y, gunX, gunY);
-        if (distance < 30) {
+        if (distance < 30 || element.x < 0) {
             noLoop();
             background("white");
             textAlign(CENTER);
@@ -112,4 +117,7 @@ function checkbump() {
             text("YOU LOST", 200, 200);
         }
     })
+}
+function drawBrokenRocket() {
+    invaders.forEach((element) => image(raketkapot, element.x, element.y, 50, 20))
 }
