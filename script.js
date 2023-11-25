@@ -1,5 +1,6 @@
 let img;
-
+let blaster;
+let explosion;
 
 let gunX = 0;
 let gunY = 200;
@@ -15,6 +16,8 @@ let teller = 0;
 function preload() {
     img = loadImage('1000_F_458661624_4cAnWUWPKTWmLDlrbyHYI4jV7biS12ss.png');
     raket = loadImage('istockphoto-1249611748-1024x1024.png');
+    blaster = loadSound('shot.mp3');
+    explosion = loadSound('explosion.mp3');
 }
 
 function setup() {
@@ -53,6 +56,7 @@ function keyPressed() {
             y: gunY
         };
         bullets.push(bullet);
+        blaster.play();
 
     }
 }
@@ -72,12 +76,13 @@ function spawnInvader() {
 function checkCollision() {
     bullets.forEach((element) => {
         const distance = dist(element.x, element.y, invaders[0].x, invaders[0].y);
-        console.log(distance);
+
         if (distance < 50) {
             bullets.shift();
             invaders.shift();
             spawnInvader();
             teller++;
+            explosion.play();
 
 
         }
