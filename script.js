@@ -37,6 +37,7 @@ function draw() {
     checkCollision();
     score();
     checkbump();
+    fixRocket();
 
 
 
@@ -80,16 +81,19 @@ function checkCollision() {
     bullets.forEach((element) => {
         const distance = dist(element.x, element.y, invaders[0].x, invaders[0].y);
 
-        if (distance < 50) {
+        if (distance < 30) {
 
             bullets.shift();
             invaders.shift();
             spawnInvader();
             teller++;
             explosion.play();
-            drawBrokenRocket();
 
 
+
+
+        } else if (distance < 40) {
+            raket = raketkapot;
         }
     })
 
@@ -111,13 +115,22 @@ function checkbump() {
         const distance = dist(element.x, element.y, gunX, gunY);
         if (distance < 30 || element.x < 0) {
             noLoop();
-            background("white");
+            background("black");
             textAlign(CENTER);
-            fill("black")
-            text("YOU LOST", 200, 200);
+            fill("yellow")
+            text("You failed to save the galaxy", 200, 200);
+            fill("cornflowerblue")
+
+            text("Your Highscore was " + teller, 200, 250);
+            fill("tomato")
+            text("Try again next time", 200, 300);
+            fill("limegreen")
+            text("Loser", 200, 350);
         }
     })
 }
-function drawBrokenRocket() {
-    invaders.forEach((element) => image(raketkapot, element.x, element.y, 50, 20))
+function fixRocket() {
+    if (invaders[0].x === 350) {
+        raket = raket2;
+    }
 }
