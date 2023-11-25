@@ -14,6 +14,7 @@ const invaders = [{
 let teller = 0;
 function preload() {
     img = loadImage('1000_F_458661624_4cAnWUWPKTWmLDlrbyHYI4jV7biS12ss.png');
+    raket = loadImage('istockphoto-1249611748-1024x1024.png');
 }
 
 function setup() {
@@ -56,7 +57,7 @@ function drawBullets() {
     bullets.forEach((element) => rect(element.x++ + 50, element.y, 5, 5))
 }
 function drawInvader() {
-    invaders.forEach((element) => rect(element.x--, element.y, 50, 20))
+    invaders.forEach((element) => image(raket, element.x--, element.y, 50, 20))
 }
 function spawnInvader() {
     const invader = {
