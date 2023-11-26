@@ -10,3 +10,21 @@ main {
 main canvas {
     box-shadow: -25px 0 20px -20px rgba(0, 0, 0, 0.45);
 }
+
+footer {
+    display: none;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    footer {
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+
+    }
+
+    footer button {
+        padding: 2rem;
+    }
+}

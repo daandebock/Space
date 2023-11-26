@@ -89,9 +89,6 @@ function checkCollision() {
             teller++;
             explosion.play();
 
-
-
-
         } else if (distance < 40) {
             raket = raketkapot;
         }
@@ -133,4 +130,19 @@ function fixRocket() {
     if (invaders[0].x === 350) {
         raket = raket2;
     }
+}
+function goUp() {
+    gunY = gunY - 20;
+}
+function fire(){
+    const bullet = {
+        x: gunX,
+        y: gunY
+    };
+    bullets.push(bullet);
+    blaster.play();
+
+}
+function goDown(){
+    gunY = gunY + 20;
 }
